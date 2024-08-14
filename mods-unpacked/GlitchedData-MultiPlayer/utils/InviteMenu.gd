@@ -300,7 +300,7 @@ func updateUserList(list):
 func processLoginStatus(reason):
 	if reason == "success":
 		title.text = "欢迎, " + multiplayerManager.accountName.to_upper()
-		underline.text = "-------- "
+		underline.text = "---  "
 		for i in range(multiplayerManager.accountName.length()): underline.text = underline.text + "-"
 		crtMenu.visible = true
 		playerListSection.visible = true

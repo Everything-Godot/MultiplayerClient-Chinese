@@ -11,7 +11,7 @@
 
 我们知道你们中的许多人都在焦急地等待恶魔轮盘赌官方多人游戏的发布。 由于没有预计发布时间 (ETA)，[MSLaFaver](https://github.com/MSLaFaver/) 和 [原作者](https://github.com/j-trueman/) 就决定自己想办法解决（而我则将其汉化了）。现在，在 Steam 版发布仅仅两个月后，我们很荣幸地向您呈现_多人游戏_，这是一款用于恶魔轮盘赌的 1v1 模组。
 
-<p align="center"><strong>最新版本: 0.2.2-chs</strong><br>在线游戏之前请检查您的模组版本。</p>
+<p align="center"><strong>最新版本: 0.2.2-chs-1</strong><br>在线游戏之前请检查您的模组版本。</p>
 
 尽管基于我 (Josh) 为 itch.io 版游戏制作的 [原创](https://github.com/j-trueman/BuckshotRouletteMultiplayer) 多人游戏模组，但 _多人游戏_ 在几乎所有方面都更胜一筹。让我们来看看其中的几点。
 

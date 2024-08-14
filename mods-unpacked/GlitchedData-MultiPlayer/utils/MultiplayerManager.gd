@@ -89,7 +89,7 @@ func attemptLogin():
 func notifySuccessfulLogin(username):
 	accountName = username
 	inviteMenu.processLoginStatus("success")
-	print("以作为 %s 登录" % username)
+	print("已作为 %s 登录" % username)
 	loggedIn = true
 
 @rpc("any_peer", "reliable")

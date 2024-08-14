@@ -52,8 +52,8 @@ func _ready():
 		array_bootuplogo[i].position.x = -1.5
 		array_bootuplogo[i].position.z = logo_z_positions[i]
 		array_bootuplogo[i].text = ascii[i]
-	array_bootuplogo[8].text = "VERSION " + multiplayerManager.version + " (PUBLIC BETA)"
-	array_bootuplogo[9].text = "Any created user accounts\nmay be suject to deletion\nfor any reason at any time."
+	array_bootuplogo[8].text = "版本 " + multiplayerManager.version + " (公开测试版)"
+	array_bootuplogo[9].text = "任何创建的\n用户帐户都可能\n随时因任何原因被删除。"
 
 func _unhandled_input(event):
 	if (event.is_action_pressed("ui_accept") && viewing):
@@ -160,12 +160,12 @@ func processInviteStatus(username, status):
 				await get_tree().create_timer(2.5, false).timeout
 				SetCRT(false)
 		"busy":
-#			multiplayerMenuManager.error_label_players.text = "ERROR: USER HAS PENDING INVITE, TRY AGAIN"
+#			multiplayerMenuManager.error_label_players.text = "错误：用户有待处理的邀请，请重试"
 			pass
 		"deny":
-#			multiplayerMenuManager.error_label_players.text = "ERROR: INVITE DECLINED"
+#			multiplayerMenuManager.error_label_players.text = "错误：邀请被拒绝"
 			pass
 		_:
-#			multiplayerMenuManager.error_label_players.text = "INVITE RETRACTED"
+#			multiplayerMenuManager.error_label_players.text = "邀请已撤回"
 			pass
 	inviteeID = null

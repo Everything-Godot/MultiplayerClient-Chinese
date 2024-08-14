@@ -16,7 +16,7 @@ func receivePlayerInfo(): pass
 
 @rpc("any_peer", "reliable")
 func sendPlayerInfo(players_var):
-	print("receiving")
+	print("接收中")
 	players = players_var
 
 @rpc("any_peer", "reliable")

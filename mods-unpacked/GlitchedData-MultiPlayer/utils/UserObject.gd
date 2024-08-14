@@ -17,11 +17,11 @@ func setup(user, id, manager, isInvited):
 	multiplayerManager = manager
 	usernameLabel.text = username
 	if isInvited :
-		inviteButton.text = "PENDING"
+		inviteButton.text = "等待回应"
 		inviteButton.disabled = true
 
 func inviteUser():
-	print("INVITE %s" % username)
-	inviteButton.text = "PENDING"
+	print("邀请 %s" % username)
+	inviteButton.text = "等待回应"
 	inviteButton.disabled = true
 	multiplayerManager.createInvite.rpc(userID)

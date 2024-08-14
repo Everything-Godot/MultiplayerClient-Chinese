@@ -6,6 +6,6 @@ func Reset():
 	multiplayerManager.loggedIn = false
 	multiplayerManager.inMatch = false
 	save.ClearSave()
-	print("changing scene to: death")
+	print("将场景更改至: 死亡")
 	get_tree().change_scene_to_file("res://scenes/death.tscn")
 	fs = true

@@ -50,8 +50,8 @@ func setup(username, id, menu, isOutgoing = false):
 		denyButton.button_down.connect(cancelPressed)
 		var tickButton = get_node("accept")
 		tickButton.visible = false
-		typeLabel.text = "INVITE SENT"
-		usernameLabel.get_parent().text = "TO: "
+		typeLabel.text = "邀请已发送"
+		usernameLabel.get_parent().text = "到: "
 		return
 	acceptButton.button_down.connect(acceptPressed)
 	denyButton.button_down.connect(denyPressed)

@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": ["INVITE", "[INVITE]", "INVITE"]
+"values": ["邀请", "[邀请]", "邀请"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7yhvj"]
@@ -52,7 +52,7 @@ offset_bottom = 16.0
 theme_override_colors/font_color = Color(0.679688, 0.878906, 0.660156, 1)
 theme_override_fonts/font = ExtResource("1_tswvb")
 theme_override_font_sizes/font_size = 10
-text = "USERNAME HERE"
+text = "此处输入用户名"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
@@ -65,7 +65,7 @@ theme_override_fonts/font = ExtResource("1_tswvb")
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rr0qd")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_7kucy")
-text = "INVITE"
+text = "邀请"
 clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

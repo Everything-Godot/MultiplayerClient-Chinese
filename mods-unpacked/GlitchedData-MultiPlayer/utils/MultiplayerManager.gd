@@ -73,7 +73,7 @@ func connectToServer():
 	if url == "buckshotmultiplayer.net": url = "connectviamultiplayerclient." + url
 	var error = peer.create_client(url, 2095)
 	if error:
-		print("ERROR: %s" % error)
+		print("错误: %s" % error)
 		return error
 	multiplayer.set_multiplayer_peer(peer)
 
@@ -89,12 +89,12 @@ func attemptLogin():
 func notifySuccessfulLogin(username):
 	accountName = username
 	inviteMenu.processLoginStatus("success")
-	print("logged in as %s" % username)
+	print("以作为 %s 登录" % username)
 	loggedIn = true
 
 @rpc("any_peer", "reliable")
 func closeSession(reason):
-	print("SESSION TERMINATED\nReason: %s" % reason)
+	print("会话已终止\n原因: %s" % reason)
 	loginStatus.emit(reason)
 	loggedIn = false
 
@@ -106,7 +106,7 @@ func _onConnectionFail():
 
 func _onServerDisconnected():
 	multiplayer.multiplayer_peer = null
-	print("Server Disconected")
+	print("服务器已断开连接")
 	loggedIn = false
 	if !inMatch && !inviteMenu.crtMenu.visible:
 		inviteMenu.get_node("disconnected").visible = true
@@ -124,10 +124,10 @@ func _onServerDisconnected():
 @rpc("any_peer", "reliable")
 func receiveUserCreationStatus(return_value: bool): 
 	if return_value == false:
-		print("USER ALREADY EXISTS")
+		print("用户已存在")
 		closeSession("userExists")
 	else:
-		print("CREATED USER SUCCESSFULLY")
+		print("用户创建成功")
 		loginStatus.emit() 
 	
 @rpc("any_peer", "reliable")

@@ -11,7 +11,7 @@ func ExitGame():
 	multiplayer.multiplayer_peer = null
 	multiplayerManager.loggedIn = false
 	multiplayerManager.inMatch = false
-	print("changing scene to: menu")
+	print("更改场景至: 菜单")
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _process(delta):

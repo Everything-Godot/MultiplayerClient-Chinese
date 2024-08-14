@@ -1,8 +1,8 @@
 {
-  "name": "MultiPlayer",
+  "name": "多人游戏",
   "namespace": "GlitchedData",
   "version_number": "0.2.2",
-  "description": "Want to enjoy Buckshot Roulette with your friends? Now you can!",
+  "description": "想要和你的朋友一起游玩恶魔轮盘赌？现在你可以做到了！",
   "website_url": "https://buckshotmultiplayer.net",
   "dependencies": [],
   "extra": {

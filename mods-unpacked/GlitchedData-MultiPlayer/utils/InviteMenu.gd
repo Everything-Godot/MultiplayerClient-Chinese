@@ -299,7 +299,7 @@ func updateUserList(list):
 		
 func processLoginStatus(reason):
 	if reason == "success":
-		title.text = "WELCOME, " + multiplayerManager.accountName.to_upper()
+		title.text = "欢迎, " + multiplayerManager.accountName.to_upper()
 		underline.text = "-------- "
 		for i in range(multiplayerManager.accountName.length()): underline.text = underline.text + "-"
 		crtMenu.visible = true
@@ -314,29 +314,29 @@ func processLoginStatus(reason):
 		signupSection.visible = true
 		match reason:
 			"invalidUsername":
-				errorLabel.text = "THAT USERNAME IS INVALID"
-				print("THAT USERNAME IS INVALID")
+				errorLabel.text = "用户名无效"
+				print("用户名无效")
 			"userAlreadyExists":
-				errorLabel.text = "THAT USER ALREADY EXISTS"
-				print("THAT USER ALREADY EXISTS")
+				errorLabel.text = "用户名已被占用"
+				print("用户名已被占用")
 			"nonExistentUser":
-				errorLabel.text = "CAN'T LOGIN TO A \nNONEXISTENT USER"
-				print("CAN'T LOGIN TO A \nNONEXISTENT USER")
+				errorLabel.text = "无法登录到\n不存在的用户"
+				print("无法登录到\n不存在的用户")
 			"databaseError":
-				errorLabel.text = "THERE WAS AN ERROR \nWITH OUR DATABASE"
-				print("THERE WAS AN ERROR \nWITH OUR DATABASE")
+				errorLabel.text = "服务器数据库错误"
+				print("服务器数据库错误")
 			"malformedKey":
-				errorLabel.text = "YOUR USER KEY IS CORRUPTED"
-				print("YOUR USER KEY IS CORRUPTED")
+				errorLabel.text = "你的用户KEY已损坏"
+				print("你的用户KEY已损坏")
 			"invalidCreds":
-				errorLabel.text = "PROVIDED KEY DOESN'T MATCH ACCOUNT"
-				print("PROVIDED KEY DOESN'T MATCH ACCOUNT")
+				errorLabel.text = "提供的KEY不匹配对应账户"
+				print("提供的KEY不匹配对应账户")
 			"noKey":
-				errorLabel.text = "NO USER KEY FOUND"
-				print("NO USER KEY FOUND")
+				errorLabel.text = "未找到用户KEY"
+				print("未找到用户KEY")
 			"outdatedClient":
-				errorLabel.text = "OUTDATED CLIENT! PLEASE UPDATE\nAT BUCKSHOTMULTIPLAYER.NET"
-				print("OUTDATED CLIENT")
+				errorLabel.text = "过期的客户端！请在\n BUCKSHOTMULTIPLAYER.NET 更新"
+				print("过期的客户端")
 		usernameInput.grab_focus()
 	errorClear()
 	signupSection.visible = true

@@ -89,7 +89,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1.0, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": ["Connecting To Server...", "Connecting To Server.", "Connecting To Server..", "Connecting To Server..."]
+"values": ["正在连接到服务器...", "正在连接到服务器.", "正在连接到服务器..", "正在连接到服务器..."]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_214l3"]
@@ -261,7 +261,7 @@ focus_mode = 0
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hk0tl")
-text = "INCOMING"
+text = "传入"
 
 [node name="outgoing" type="Button" parent="."]
 visible = false
@@ -274,7 +274,7 @@ focus_mode = 0
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_i21ws")
-text = "OUTGOING"
+text = "传出"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -301,7 +301,7 @@ offset_bottom = 266.0
 theme_override_colors/font_color = Color(0.648438, 0.832031, 0.632813, 1)
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 14
-text = "Connecting To Server..."
+text = "正在连接到服务器..."
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="connecting"]
 libraries = {
@@ -326,8 +326,8 @@ offset_bottom = 274.0
 theme_override_colors/font_color = Color(0.648438, 0.832031, 0.632813, 1)
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 14
-text = "COULD NOT CONTACT SERVER.
-PLEASE TRY AGAIN LATER."
+text = "无法与服务器建立连接。
+请稍后再试。"
 horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="connectFail"]
@@ -348,8 +348,8 @@ offset_bottom = 283.0
 theme_override_colors/font_color = Color(0.648438, 0.832031, 0.632813, 1)
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 14
-text = "Lost connection to server.
-open crt menu to reconnect"
+text = "与服务器的连接已丢失。
+打开 crt 菜单进行重连"
 horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="disconnected"]
@@ -371,10 +371,10 @@ offset_bottom = 306.0
 theme_override_colors/font_color = Color(0.648438, 0.832031, 0.632813, 1)
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 14
-text = "Lost connection to server.
-open crt menu to reconnect
+text = "与服务器的连接已丢失。
+打开 crt 菜单进行重连
 
-returning to lobby..."
+正在返回大厅..."
 horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="disconnectedInGame"]
@@ -396,7 +396,7 @@ offset_bottom = 324.0
 theme_override_colors/font_color = Color(0.648438, 0.832031, 0.632813, 1)
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 14
-text = "Opponent disconnected\nreturning to lobby..."
+text = "对手已断开连接\n正在返回大厅..."
 horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="opponentDisconnected"]
@@ -428,7 +428,7 @@ theme_override_colors/font_color = Color(0.764706, 1, 0.741176, 1)
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 12
-text = "MULTIPLAYER"
+text = "多人游戏"
 
 [node name="underline" type="Label" parent="crt menu"]
 layout_mode = 0
@@ -459,7 +459,7 @@ theme_override_colors/font_color = Color(0.764706, 1, 0.741176, 1)
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 10
-text = "ONLINE PLAYERS"
+text = "在线玩家"
 
 [node name="underline" type="Label" parent="crt menu/playerlist section/online players"]
 layout_mode = 0
@@ -512,7 +512,7 @@ theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_dwma3")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ugsc6")
-placeholder_text = " USERNAME "
+placeholder_text = " 用户名 "
 max_length = 10
 caret_blink = true
 
@@ -527,7 +527,7 @@ theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_wq0lo")
-text = "SIGN UP"
+text = "注册"
 
 [node name="error" type="Label" parent="crt menu/signup section"]
 layout_mode = 0
@@ -574,7 +574,7 @@ offset_bottom = 50.0
 theme_override_colors/font_color = Color(0.662745, 1, 0.635294, 1)
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 12
-text = "ACCEPTED YOUR INVITE!"
+text = "接受了你的邀请！"
 horizontal_alignment = 1
 
 [node name="label2" type="Label" parent="invite accepted/Panel"]
@@ -586,7 +586,7 @@ offset_bottom = 85.0
 theme_override_colors/font_color = Color(0.662745, 1, 0.635294, 1)
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 12
-text = "STARTING GAME IN:"
+text = "游戏开始于:"
 
 [node name="label3" type="Label" parent="invite accepted/Panel"]
 layout_mode = 0
@@ -629,7 +629,7 @@ offset_bottom = 35.0
 theme_override_colors/font_color = Color(0.662745, 1, 0.635294, 1)
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 12
-text = "STARTING GAME IN:"
+text = "游戏开始于:"
 
 [node name="label3" type="Label" parent="joining game/Panel"]
 layout_mode = 0

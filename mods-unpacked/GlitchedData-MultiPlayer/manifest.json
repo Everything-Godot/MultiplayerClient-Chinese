@@ -1,7 +1,7 @@
 {
   "name": "MultiPlayer",
   "namespace": "GlitchedData",
-  "version_number": "0.2.2",
+  "version_number": "0.2.2-chs-2",
   "description": "想要和你的朋友一起游玩恶魔轮盘赌？现在你可以做到了！",
   "website_url": "https://buckshotmultiplayer.net",
   "dependencies": [],

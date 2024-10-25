@@ -7,6 +7,9 @@ var screenparent_multiplayer : Node3D
 var multiplayerManager
 var mrm
 var inviteeID
+var waitingForOpponent = false
+var waitingTimer = 0.0
+var waitingMessage = "等待对手中 ..."
 var ascii = [	  "%%%%%%%*   =%%#%## #%%##     %%%%%%*  #%%#%#%%%%#   #%%%%   #%%%%% +%%%%%%     #%%%%#     ##%######%" +
 		"\n%%%%*%%%%   %%%%#= ##%%*    %%%##%%#  *#%%%+##%%*  +%# #%    %%%#=  #%%%#     #%%=%%%#    %%%%%%%%%%" +
 		"\n %%%  %%%    %%%     %     *%%   #%%    %%   #%    #%  %#    %%%+    *%%     %%%   #%%*  #%*  %%# #%",
@@ -46,14 +49,28 @@ func _ready():
 	stream.loop = true
 	stream.loop_offset = 6.0
 	speaker_bootuploop.stream = stream
-
+	
 	for i in range(8):
 		array_bootuplogo[i].font_size = 18
 		array_bootuplogo[i].position.x = -1.5
 		array_bootuplogo[i].position.z = logo_z_positions[i]
 		array_bootuplogo[i].text = ascii[i]
-	array_bootuplogo[8].text = "版本 " + multiplayerManager.version + " (公开测试版)"
-	array_bootuplogo[9].text = "任何创建的\n用户帐户都可能\n随时因任何原因被删除。"
+	array_bootuplogo[8].text = "版本 " + multiplayerManager.version + " (公开测试)"
+	array_bootuplogo[9].text = "任何创建的用户账户\n都可能在任何时间\n以任何理由删除。"
+
+func _process(delta):
+	if mrm.actionReady_smart:
+		waitingTimer += delta
+		if waitingTimer > 2.0 and not waitingForOpponent:
+			waitingForOpponent = true
+			exit.label.text = waitingMessage
+			exit.anim.stop()
+			exit.label.self_modulate = Color(1, 1, 1, 1)
+	else:
+		waitingTimer = 0.0
+		if waitingForOpponent:
+			waitingForOpponent = false
+			if exit.label.text == waitingMessage: exit.anim.play("fade out")
 
 func _unhandled_input(event):
 	if (event.is_action_pressed("ui_accept") && viewing):
@@ -73,10 +90,12 @@ func Interaction(alias : String):
 			branch_right.get_parent().get_child(1).Press()
 			if multiplayerManager.inviteMenu.signupSection.visible and multiplayerManager.inviteMenu.usernameInput.caret_column < multiplayerManager.inviteMenu.usernameInput.text.length():
 				multiplayerManager.inviteMenu.usernameInput.caret_column += 1
+			multiplayerManager.inviteMenu.toggleLeaderboard()
 		"left":
 			branch_left.get_parent().get_child(1).Press()
 			if multiplayerManager.inviteMenu.signupSection.visible and multiplayerManager.inviteMenu.usernameInput.caret_column > 0:
 				multiplayerManager.inviteMenu.usernameInput.caret_column -= 1
+			multiplayerManager.inviteMenu.toggleLeaderboard()
 		"window":
 			if multiplayerManager.inviteMenu.usernameInput.has_focus():
 				multiplayerManager.inviteMenu.requestUsername()
@@ -105,6 +124,9 @@ func Bootup():
 		multiplayerManager.connectToServer()
 		await multiplayer.connected_to_server
 		multiplayerManager.attemptLogin()
+		await get_tree().create_timer(1.5, false).timeout
+		if multiplayerManager.rpcMismatch:
+			multiplayerManager.inviteMenu.rpcMismatch()
 	else:
 		multiplayerManager.inviteMenu.processLoginStatus("success")
 
@@ -135,6 +157,7 @@ func SetCRT(state : bool):
 	for obj in objarray_broken: obj.visible = state
 	mask.visible = state
 	intro.intbranch_bathroomdoor.interactionInvalid = state
+	intro.intbranch_crt.interactionAllowed = state
 
 func _input(event):
 	if Input.is_key_pressed(KEY_ESCAPE) && viewing:
@@ -142,15 +165,24 @@ func _input(event):
 		
 func processInviteStatus(username, status):
 	multiplayerManager.invitePendingIdx = null
+	var userObject
+	for user in multiplayerManager.inviteMenu.userList.get_children():
+		if user.username == username:
+			userObject = user
+			break
 	match status:
 		"accept":
 			if !multiplayerManager.inMatch:
+				for user in multiplayerManager.inviteMenu.userList.get_children():
+					if user.inviteButton.text == "等待响应":
+						user.inviteButton.text = "邀请"
+						user.inviteButton.disabled = false
+				multiplayerManager.inviteMenu.outgoingButton.queue_free()
+				userObject.override = false
+				userObject.setStatus(true)
 				multiplayerManager.inMatch = true
 				if multiplayerManager.inviteMenu.popupVisible:
-					multiplayerManager.inviteMenu.popupInvite.animationPlayer.stop()
-					multiplayerManager.inviteMenu.popupInvite.acceptButton.visible = false
-					multiplayerManager.inviteMenu.popupInvite.denyButton.visible = false
-					multiplayerManager.inviteMenu.popupInvite.destroy(null)
+					multiplayerManager.inviteMenu.removePopup()
 				intro.roundManager.playerData.playername = multiplayerManager.accountName.to_upper()
 				multiplayerManager.inviteMenu.showReady(username)
 				await multiplayerManager.inviteMenu.timerAccept.animation_finished
@@ -160,12 +192,20 @@ func processInviteStatus(username, status):
 				await get_tree().create_timer(2.5, false).timeout
 				SetCRT(false)
 		"busy":
-#			multiplayerMenuManager.error_label_players.text = "错误：用户有待处理的邀请，请重试"
-			pass
+#			multiplayerMenuManager.error_label_players.text = "ERROR: USER HAS PENDING INVITE, TRY AGAIN"
+			userObject.override = false
+			userObject.setStatus(true)
 		"deny":
-#			multiplayerMenuManager.error_label_players.text = "错误：邀请被拒绝"
-			pass
-		_:
-#			multiplayerMenuManager.error_label_players.text = "邀请已撤回"
-			pass
+#			multiplayerMenuManager.error_label_players.text = "ERROR: INVITE DECLINED"
+			print(username + " 已拒绝")
+			userObject.override = true
+			userObject.inviteButton.disabled = true
+			userObject.inviteButton.text = "被拒绝"
+		"cancel":
+#			multiplayerMenuManager.error_label_players.text = "INVITE RETRACTED"
+			for invite in multiplayerManager.inviteMenu.inviteList.get_children():
+				if invite.inviteFromUsername == username:
+					invite.queue_free()
+			if multiplayerManager.inviteMenu.popupVisible and multiplayerManager.inviteMenu.popupInvite.inviteFromUsername == username:
+				multiplayerManager.inviteMenu.removePopup()
 	inviteeID = null

@@ -59,7 +59,7 @@ offset_right = -5.0
 offset_bottom = 31.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1")
-text = "服务器:"
+text = "服务器IP:"
 
 [node name="chat" type="CheckBox" parent="."]
 layout_mode = 0
@@ -92,7 +92,7 @@ offset_right = -4.0
 offset_bottom = 31.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1")
-text = "启用语音:"
+text = "是否启用语音:"
 visible = false
 
 [node name="Config" type="Node" parent="." node_paths=PackedStringArray("url", "chat", "voice")]
